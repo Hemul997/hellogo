@@ -46,19 +46,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 		p = &Page{
 			Title: title,
 		}
-		/*
-			fmt.Printf(w, "<h1>Editing %s</h1>"+
-			"<form action=\"/save/%s\" method=\"POST\">"+
-			"<textarea name=\"body\">%s</textarea><br>"+
-			"<input type=\"submit\" value=\"Save\">"+
-			"</form>",
-			p.Title, p.Title, p.Body)
-		*/
 	}
-	/*
-		t, _ := template.ParseFiles("html/edit.html")
-		t.Execute(w, p)
-	*/
 
 	renderTemplate(w, "edit", p)
 }
@@ -69,14 +57,6 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 }
 
 func main() {
-	/*
-		p1 := &Page{Title: "TestPage",
-			Body: []byte("This is a sample Page.")}
-		p1.save()
-		p2, _ := loadPage("TestPage")
-		fmt.Println(string(p2.Body))
-	*/
-
 	http.HandleFunc("/view/", viewHandler)
 	http.HandleFunc("/edit/", editHandler)
 	log.Fatal(http.ListenAndServe(":3000", nil))
